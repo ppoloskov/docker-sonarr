@@ -19,7 +19,8 @@ RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/ed
     addgroup -g ${PGID} notroot && \
     adduser -D -H -G notroot -u ${PUID} notroot && \
     mkdir /config && \
-    echo -e '<Config>\n<UrlBase>/sonarr</UrlBase>\n</Config>' > $SETTINGS
+    echo -e '<Config>\n<UrlBase>/sonarr</UrlBase>\n</Config>' > $SETTINGS && \
+    chown -R notroot:notroot /opt /config
 
 # Folder to store configs and path to series
 VOLUME ["/config", "/tv"]
